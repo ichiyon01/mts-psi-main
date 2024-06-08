@@ -245,7 +245,7 @@ if (isset($_GET['kode_siswa'])) {
                       }
                       echo "</select>";
                     } else {
-                      echo "<input type='number' class='form-control' name='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' id='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' placeholder='Masukkan nilai' required>";
+                      echo "<input type='number' class='form-control' name='nilai" . $rowKriteria['kode_kriteria'] . "' id='nilai" . $rowKriteria['kode_kriteria'] . "' placeholder='Masukkan nilai' required>";
                     }
                     echo "</div>";
                   }
