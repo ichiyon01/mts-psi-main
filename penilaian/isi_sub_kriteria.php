@@ -208,23 +208,45 @@ if (isset($_GET['kode_siswa'])) {
                 </div>
 
                 <?php
+                // if ($resultKriteria->num_rows > 0) {
+                //   while ($rowKriteria = $resultKriteria->fetch_assoc()) {
+                //     echo "<div class='mb-3'>";
+                //     echo "<label for='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' class='form-label'><i class='bi bi-list-alt'></i> " . $rowKriteria['nama_kriteria'] . "</label>";
+                //     echo "<select class='form-select' name='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' id='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' required>";
+                //     // edit if else
+                //     echo "<option value=''><i class='bi bi-caret-down'></i> Pilih Sub Kriteria</option>";
+
+                //     // Query untuk mengambil sub kriteria berdasarkan kriteria tertentu
+                //     $querySubKriteria = "SELECT * FROM sub_kriteria WHERE kode_kriteria = '" . $rowKriteria['kode_kriteria'] . "'";
+                //     $resultSubKriteria = $conn->query($querySubKriteria);
+                //     if ($resultSubKriteria->num_rows > 0) {
+                //       while ($rowSubKriteria = $resultSubKriteria->fetch_assoc()) {
+                //         echo "<option value='" . $rowSubKriteria['id_sub_kriteria'] . "'><i class='bi bi-check'></i> " . $rowSubKriteria['sub_kriteria'] . "</option>";
+                //       }
+                //     }
+                //     echo "</select>";
+                //     echo "</div>";
+                //   }
+                // }
                 if ($resultKriteria->num_rows > 0) {
                   while ($rowKriteria = $resultKriteria->fetch_assoc()) {
                     echo "<div class='mb-3'>";
                     echo "<label for='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' class='form-label'><i class='bi bi-list-alt'></i> " . $rowKriteria['nama_kriteria'] . "</label>";
-                    echo "<select class='form-select' name='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' id='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' required>";
-                    // edit if else
-                    echo "<option value=''><i class='bi bi-caret-down'></i> Pilih Sub Kriteria</option>";
 
                     // Query untuk mengambil sub kriteria berdasarkan kriteria tertentu
                     $querySubKriteria = "SELECT * FROM sub_kriteria WHERE kode_kriteria = '" . $rowKriteria['kode_kriteria'] . "'";
                     $resultSubKriteria = $conn->query($querySubKriteria);
+
                     if ($resultSubKriteria->num_rows > 0) {
+                      echo "<select class='form-select' name='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' id='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' required>";
+                      echo "<option value=''><i class='bi bi-caret-down'></i> Pilih Sub Kriteria</option>";
                       while ($rowSubKriteria = $resultSubKriteria->fetch_assoc()) {
                         echo "<option value='" . $rowSubKriteria['id_sub_kriteria'] . "'><i class='bi bi-check'></i> " . $rowSubKriteria['sub_kriteria'] . "</option>";
                       }
+                      echo "</select>";
+                    } else {
+                      echo "<input type='number' class='form-control' name='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' id='sub_kriteria_" . $rowKriteria['kode_kriteria'] . "' placeholder='Masukkan nilai' required>";
                     }
-                    echo "</select>";
                     echo "</div>";
                   }
                 }
